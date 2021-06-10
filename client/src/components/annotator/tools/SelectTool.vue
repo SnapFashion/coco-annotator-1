@@ -45,7 +45,7 @@ export default {
         segments: true,
         stroke: true,
         fill: false,
-        tolerance: 10,
+        tolerance: 1,
         match: hit => {
           return !hit.item.hasOwnProperty("indicator");
         }
@@ -261,7 +261,7 @@ export default {
         this.segment.point = event.point;
       }
       else if (!this.keypoint) {
-        // the event point exists on a relative coordinate system (dependent on screen dimensions) 
+        // the event point exists on a relative coordinate system (dependent on screen dimensions)
         // however, the image on the canvas paper exists on an absolute coordinate system
         // thus, tracking mouse deltas from the previous point is necessary
         let delta_x = this.initPoint.x - event.point.x;
@@ -270,7 +270,7 @@ export default {
         let new_center = this.$parent.paper.view.center.add(center_delta);
         this.$parent.paper.view.setCenter(new_center);
       }
-      
+
     },
 
     onMouseUp(event) {
@@ -278,9 +278,9 @@ export default {
     },
 
     onMouseMove(event) {
-      // ensures that the initPoint is always tracked. 
+      // ensures that the initPoint is always tracked.
       // Necessary for the introduced pan functionality and fixes a bug with selecting and dragging bboxes, since initPoint is initially undefined
-      this.initPoint = event.point;  
+      this.initPoint = event.point;
 
       let hitResult = this.$parent.paper.project.hitTest(
         event.point,
